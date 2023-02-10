@@ -10,8 +10,8 @@ def create_project_dir(directory):
 
 # Create queue and crawled files
 def create_data_fiels(project_name, base_url):
-    queue = f"{project_name}-queue.txt"
-    crawled = f"{project_name}-crawled.txt"
+    queue = f"{project_name}/queue.txt"
+    crawled = f"{project_name}/crawled.txt"
     if not os.path.isfile(queue):
         write_file(queue, base_url)
     if not os.path.isfile(crawled):
