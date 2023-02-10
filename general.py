@@ -34,3 +34,19 @@ def append_to_file(filename, data):
 def delete_file_contents(filename):
     with open(filename, 'w'):
         pass
+
+
+# Convert file items to a set
+def file_to_set(filename):
+    results = set()
+    with open(filename, "rt") as file:
+        for line in file:
+            results.add(line.replace("\n", ""))
+    return results
+
+
+# Convert set to a file items with new line
+def set_to_file(links_data_set, filename):
+    delete_file_contents(filename)
+    for link in links_data_set:
+        append_to_file(filename, link)
