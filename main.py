@@ -1,16 +1,14 @@
-# This is a sample Python script.
+import threading
+from queue import Queue
+from spider import Spider
+from domain import *
+from general import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+PROJECT_NAME = "mediaexpert"
+HOMEPAGE = "https://www.mediaexpert.pl/"
+DOMAIN_NAME = get_domain_name(HOMEPAGE)
+QUEUE_FILE = f"{PROJECT_NAME}/queue.txt"
+CRAWLED_FILE = f"{PROJECT_NAME}/crawled.txt"
+NUMBER_OD_THREADS = 8
+queue = Queue()
+Spider(PROJECT_NAME, HOMEPAGE, DOMAIN_NAME)
