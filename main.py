@@ -4,8 +4,8 @@ from spider import Spider
 from domain import *
 from general import *
 
-PROJECT_NAME = "mediaexpert"
-HOMEPAGE = "https://www.mediaexpert.pl/"
+PROJECT_NAME = "toscrape"
+HOMEPAGE = "https://books.toscrape.com/"
 DOMAIN_NAME = get_domain_name(HOMEPAGE)
 QUEUE_FILE = f"{PROJECT_NAME}/queue.txt"
 CRAWLED_FILE = f"{PROJECT_NAME}/crawled.txt"
