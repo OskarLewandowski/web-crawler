@@ -2,6 +2,8 @@ import urllib.request
 from link_finder import LinkFinder
 from general import *
 from domain import *
+from bs4 import BeautifulSoup
+import requests
 
 
 class Spider:
@@ -33,7 +35,7 @@ class Spider:
     @staticmethod
     def crawl_page(thread_name, page_url):
         if page_url not in Spider.crawled:
-            Spider.add_links_to_queue(Spider.gather_link(page_url))
+            Spider.add_links_to_queue(Spider.gather_link2(page_url))
             Spider.queue.remove(page_url)
             Spider.crawled.add(page_url)
             Spider.update_files()
@@ -55,7 +57,7 @@ class Spider:
             finder = LinkFinder(Spider.base_url, page_url)
             finder.feed(html_string)
         except Exception as e:
-            print(f"Error {str(e)}, can not crawl page: {page_url}")
+            print(f"Error {e}, can not crawl page: {page_url}")
             return set()
         return finder.page_links()
 
@@ -72,3 +74,19 @@ class Spider:
     def update_files():
         set_to_file(Spider.queue, Spider.queue_file)
         set_to_file(Spider.crawled, Spider.crawled_file)
+
+    @staticmethod
+    def gather_link2(page_url):
+        html_string = ""
+        try:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+            page = requests.get(page_url, headers=headers)
+            soup = BeautifulSoup(page.content, "lxml")
+            html_string = BeautifulSoup(soup.prettify(), "lxml")
+            finder = LinkFinder(Spider.base_url, page_url)
+            finder.feed(str(html_string))
+        except Exception as e:
+            print(f"Error {e}, can not crawl page: {page_url}")
+            return set()
+        return finder.page_links()
