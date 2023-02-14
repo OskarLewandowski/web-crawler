@@ -4,6 +4,9 @@ from spider import Spider
 from domain import *
 from general import *
 from multiprocessing import cpu_count
+import time
+
+start_time = time.time()
 
 PROJECT_NAME = "toscrape"
 HOMEPAGE = "https://books.toscrape.com/"
@@ -53,3 +56,5 @@ def crawl():
 # Start
 create_workers()
 crawl()
+
+print(f"Execution time is: {round(time.time() - start_time, 2)} seconds")
