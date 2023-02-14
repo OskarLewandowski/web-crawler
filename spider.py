@@ -38,7 +38,7 @@ class Spider:
             Spider.crawled.add(page_url)
             Spider.update_files()
             print(f"{thread_name} now crawling {page_url}")
-            print(f"Queue: {str(len(Spider.queue))}\nCrawled: {str(len(Spider.crawled))}")
+            print(f"Queue: {str(len(Spider.queue))}  |  Crawled: {str(len(Spider.crawled))}")
 
     @staticmethod
     def gather_link(page_url):
