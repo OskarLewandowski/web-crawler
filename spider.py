@@ -48,7 +48,7 @@ class Spider:
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
             request = urllib.request.Request(page_url, headers=headers)
             response = urllib.request.urlopen(request, timeout=10)
-            print("RESPONSE HEADER: " + response.getheader("Content-Type"))
+            # print("RESPONSE HEADER: " + response.getheader("Content-Type"))
             if response.getheader("Content-Type") == "text/html":
                 html_bytes = response.read()
                 html_string = html_bytes.decode("utf-8")
