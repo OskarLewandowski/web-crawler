@@ -81,9 +81,10 @@ class Spider:
         try:
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-            page = requests.get(page_url, headers=headers)
+            page = requests.get(page_url, headers=headers, timeout=50)
             soup = BeautifulSoup(page.content, "lxml")
             html_string = BeautifulSoup(soup.prettify(), "lxml")
+            # print(html_string)
             finder = LinkFinder(Spider.base_url, page_url)
             finder.feed(str(html_string))
         except Exception as e:

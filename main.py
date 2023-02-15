@@ -8,8 +8,8 @@ import time
 
 start_time = time.time()
 
-PROJECT_NAME = "toscrape"
-HOMEPAGE = "https://books.toscrape.com/"
+PROJECT_NAME = "mediaexpert"
+HOMEPAGE = "https://www.mediaexpert.pl/telewizory-i-rtv"
 DOMAIN_NAME = get_domain_name(HOMEPAGE)
 QUEUE_FILE = f"{PROJECT_NAME}/queue.txt"
 CRAWLED_FILE = f"{PROJECT_NAME}/crawled.txt"
